@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Friendship License – Verified</title>
+  <style>
+    :root {
+      --bg: #0b0b10;
+      --card: rgba(255,255,255,0.04);
+      --border: rgba(255,255,255,0.18);
+      --text: #f4f4f6;
+      --muted: rgba(255,255,255,0.65);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      height: 100vh;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 420px;
+      padding: 42px 38px;
+      border-radius: 22px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      box-shadow: 0 14px 50px rgba(0,0,0,0.5);
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 1.6rem;
+      margin-bottom: 14px;
+      letter-spacing: -0.3px;
+    }
+
+    p {
+      font-size: 0.95rem;
+      line-height: 1.55;
+      margin: 10px 0;
+      color: var(--text);
+    }
+
+    .muted {
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+
+    .badge {
+      display: inline-block;
+      margin-top: 26px;
+      padding: 10px 22px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.28);
+      font-size: 0.75rem;
+      letter-spacing: 0.6px;
+    }
+
+    .divider {
+      margin: 26px 0;
+      height: 1px;
+      background: rgba(255,255,255,0.12);
+    }
+
+    .id {
+      margin-top: 18px;
+      font-size: 0.72rem;
+      color: var(--muted);
+      letter-spacing: 0.8px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card" id="card">
+    <h1>Friendship License: ACTIVE 🪪✅</h1>
+
+    <p>
+      This page confirms that the holder of this QR code
+      is currently permitted to be friends with
+      <strong>Samriddhi Bagchi</strong>.
+    </p>
+
+    <p>
+      Access reviewed. 
+      <p>Friendship has been permitted for the year 2026</p>
+    </p>
+
+    <p id="nameLine" class="muted"></p>
+
+    <div class="badge">Official • Emotionally Binding</div>
+
+    <div class="divider"></div>
+
+    <p class="muted">
+      Misuse of this validation during arguments, if any,
+      may result in temporary revocation.
+    </p>
+
+    <div class="id" id="licenseId"></div>
+    <div class="id">Valid for 2026 • Do not test expiry</div>
+  </div>
+
+  <script>
+    // Expiry check
+    const expiry = new Date("2027-01-01T00:00:00");
+    const today = new Date();
+
+    if (today >= expiry) {
+      document.body.innerHTML = `
+        <div style="text-align:center;color:#fff;font-family:Inter,system-ui;">
+          <h1>Friendship License: EXPIRED ❌</h1>
+          <p>Please reapply. Do not negotiate.</p>
+        </div>
+      `;
+    }
+
+    // Fake license ID
+    const id = "FRND-" + Math.random().toString(36).substring(2, 8).toUpperCase();
+    document.getElementById("licenseId").innerText = "License ID: " + id;
+
+    // Name-based message
+    const params = new URLSearchParams(window.location.search);
+    const name = params.get("name");
+    if (name) {
+      document.getElementById("nameLine").innerText = `Yes, ${name}. This is valid. Behave.`;
+    }
+  </script>
+
+</body>
+</html>
